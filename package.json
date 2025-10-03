@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "axios": "^1.12.2",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
@@ -21,7 +22,10 @@
     "nodemailer": "^7.0.6",
     "nodemon": "^3.1.10",
     "objection": "^3.1.5",
+    "pg": "^8.16.3",
     "sqlite3": "^5.1.7",
-    "uuid": "^13.0.0"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0",
+    "yamljs": "^0.3.0"
   }
 }

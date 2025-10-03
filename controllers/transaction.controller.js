@@ -33,7 +33,7 @@ const convertCryptoToNaira = async (req, res) => {
         .query()
         .insert(transaction);
 
-    res.status(StatusCodes.OK).json({
+    res.status(StatusCodes.CREATED).json({
         status: 'success',
         transaction,
     })
