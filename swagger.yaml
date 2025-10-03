@@ -5,7 +5,7 @@ info:
   description: API for handling crypto-to-naira conversions, transactions, and audit trails.
 
 servers:
-  - url: http://localhost:3000/api/v1
+  - url: https://coinbucks-backend.onrender.com/api/v1
 
 paths:
   /transactions/to-naira:
