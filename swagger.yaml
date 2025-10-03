@@ -10,7 +10,7 @@ servers:
 paths:
   /transactions/to-naira:
     post:
-      summary: Convert cryptocurrency to Naira
+      summary: cryptocurrency to Naira Transaction
       operationId: convertCryptoToNaira
       requestBody:
         required: true
