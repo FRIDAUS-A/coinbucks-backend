@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: CoinBucks Transactions API
   version: 1.0.0
-  description: API for handling crypto-to-naira conversions, transactions, and audit trails.
+  description: API for handling crypto-to-naira transactions.
 
 servers:
   - url: https://coinbucks-backend.onrender.com/api/v1
