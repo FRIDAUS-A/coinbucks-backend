@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: CoinBucks Transactions API
+  version: 1.0.0
+  description: API for handling crypto-to-naira conversions, transactions, and audit trails.
+
+servers:
+  - url: http://localhost:3000/api/v1
+
+paths:
+  /transactions/to-naira:
+    post:
+      summary: Convert cryptocurrency to Naira
+      operationId: convertCryptoToNaira
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amountInCrypto
+                - cryptoType
+                - recipientBank
+              properties:
+                amountInCrypto:
+                  type: string
+                  example: "0.002"
+                cryptoType:
+                  type: string
+                  example: "BTC"
+                recipientBank:
+                  type: string
+                  example: "GTB"
+      responses:
+        "201":
+          description: Conversion successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+
+  /transactions:
+    get:
+      summary: Get all transactions
+      operationId: getAllTransactions
+      responses:
+        "200":
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  transactions:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Transaction"
+
+  /transactions/{transactionId}:
+    get:
+      summary: Get a transaction by ID
+      operationId: getTransactionById
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: c0a9e875-50e8-42ea-8286-ef625a4fffe4
+      responses:
+        "200":
+          description: Transaction found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "404":
+          description: Transaction not found
+
+  /audit-trails:
+    get:
+      summary: Get all audit trails
+      operationId: getAuditTrails
+      responses:
+        "200":
+          description: List of audit trails
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditTrail"
+
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          format: uuid
+          example: ad759ad1-3433-484a-b3ce-bf60dc0f9333
+        amountInCrypto:
+          type: number
+          example: 0.002
+        amountInNaira:
+          type: number
+          example: 150000
+        cryptoType:
+          type: string
+          example: BTC
+        conversionRate:
+          type: number
+          example: 75000000
+        recipientBank:
+          type: string
+          example: GTB
+        transactionAt:
+          type: string
+          format: date-time
+          example: 2025-10-03T14:26:55.459Z
+
+    AuditTrail:
+      type: object
+      properties:
+        auditId:
+          type: string
+          format: uuid
+          example: 2f14c91e-44da-40d6-9c2d-21e258e5c4c2
+        action:
+          type: string
+          example: POST
+        ipAddress:
+          type: string
+          example: 127.0.0.1
+        details:
+          type: string
+          example: "Converted 0.002 BTC to NGN"
