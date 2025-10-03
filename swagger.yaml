@@ -31,7 +31,7 @@ paths:
                   example: "BTC"
                 recipientBank:
                   type: string
-                  example: "GTB"
+                  example: "2138628026"
       responses:
         "201":
           description: Conversion successful

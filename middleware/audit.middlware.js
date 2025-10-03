@@ -30,7 +30,7 @@ const auditMiddleware = async (req, res, next) => {
         .query()
         .insert(auditTrail);
     } catch (err) {
-      console.error('Error logging audit trail:', err.message);
+      console.error('Error logging audit trail:', err);
     }
   });
 
